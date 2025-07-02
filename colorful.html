@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>怪诞虫扭动效果</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+  </head>
+  <body>
+    <script>
+      let t = 0;
+      function setup() {
+        createCanvas(400, 400);
+        colorMode(HSB, 360, 100, 100, 100);
+        background(9);
+      }
+      function draw() {
+        t += PI / 240;
+        background(9, 0, 9, 20);
+        for (let i = 10000; i--;) {
+          a(i, i / 235);
+        }
+      }
+      function a(x, y, d) {
+        let k = (4 + sin(y * 2 - t) * 3) * cos(x / 29);
+        let e = y / 8 - 13;
+        d = d !== undefined ? d : mag(k, e);
+        let q = 3 * sin(k * 2) + 0.3 / k + sin(y / 25) * k * (9 + 4 * sin(e * 9 - d * 3 + t * 2));
+        let c = d - t;
+        let hue = (x / 30 + t * 60) % 360;
+        stroke(hue, 80, 100, 80);
+        point(
+          q + 30 * cos(c) + 200,
+          q * sin(c) + d * 39 - 220
+        );
+      }
+    </script>
+  </body>
+</html>
